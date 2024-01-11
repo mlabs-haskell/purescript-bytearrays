@@ -5,8 +5,10 @@
 /generated-docs/
 /.psc-package/
 /.spago2nix/
+node_modules
 /.psc*
 /.purs*
 /.psa*
 /.spago
 bundle.js
+result
