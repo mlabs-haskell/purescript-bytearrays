@@ -1,0 +1,13 @@
+{
+    "name": "purescript-bytearrays",
+    "dependencies": {
+        "@mlabs-haskell/json-bigint": "^2.0.0"
+    },
+    "devDependencies": {
+        "esbuild": "^0.19.11"
+    },
+    "prettier": {
+        "arrowParens": "avoid",
+        "trailingComma": "none"
+    }
+}

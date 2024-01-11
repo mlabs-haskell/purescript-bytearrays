@@ -16,8 +16,17 @@ module Data.ByteArray
 
 import Prelude
 
+import Aeson
+  ( class DecodeAeson
+  , class EncodeAeson
+  , JsonDecodeError(TypeMismatch, UnexpectedValue)
+  , caseAesonString
+  , encodeAeson
+  , toStringifiedNumbersJson
+  )
 import Data.ArrayBuffer.Types (Uint8Array)
 import Data.Char (toCharCode)
+import Data.Either (Either(Left), note)
 import Data.Maybe (Maybe(Just, Nothing))
 import Data.Newtype (class Newtype)
 import Data.String.CodeUnits (toCharArray)
@@ -54,6 +63,17 @@ instance Semigroup ByteArray where
 
 instance Monoid ByteArray where
   mempty = byteArrayFromIntArrayUnsafe []
+
+instance DecodeAeson ByteArray where
+  decodeAeson j = caseAesonString (Left typeMismatchError)
+    (note unexpectedValueError <<< hexToByteArray)
+    j
+    where
+    typeMismatchError = TypeMismatch "expected a hex-encoded string"
+    unexpectedValueError = UnexpectedValue $ toStringifiedNumbersJson j
+
+instance EncodeAeson ByteArray where
+  encodeAeson ba = encodeAeson (byteArrayToHex ba)
 
 foreign import ord_ :: (Int -> Int -> Int) -> ByteArray -> ByteArray -> Int
 

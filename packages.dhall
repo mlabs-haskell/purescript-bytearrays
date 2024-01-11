@@ -102,4 +102,44 @@ let upstream =
       https://github.com/purescript/package-sets/releases/download/psc-0.15.8-20230617/packages.dhall
         sha256:292a92e32db0272db2089f3234140287c9eaf2fc15b6790a3c51f41471050eeb
 
-in  upstream
+let additions =
+      { aeson =
+        { dependencies =
+          [ "aff"
+          , "argonaut"
+          , "argonaut-codecs"
+          , "argonaut-core"
+          , "arrays"
+          , "bifunctors"
+          , "const"
+          , "control"
+          , "effect"
+          , "either"
+          , "exceptions"
+          , "foldable-traversable"
+          , "foreign-object"
+          , "integers"
+          , "js-bigints"
+          , "lists"
+          , "maybe"
+          , "mote"
+          , "numbers"
+          , "ordered-collections"
+          , "partial"
+          , "prelude"
+          , "quickcheck"
+          , "record"
+          , "spec"
+          , "strings"
+          , "tuples"
+          , "typelevel"
+          , "typelevel-prelude"
+          , "uint"
+          , "untagged-union"
+          ]
+        , repo = "https://github.com/mlabs-haskell/purescript-aeson.git"
+        , version = "2d482496277d28db64d853f8e63c9046e8a90878"
+        }
+      }
+
+in  upstream // additions

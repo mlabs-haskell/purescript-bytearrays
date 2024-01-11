@@ -10,16 +10,20 @@ When creating a new Spago project, you can use
 `spago init --no-comments` or `spago init -C`
 to generate this file without the comments in this block.
 -}
-{ name = "my-project"
+{ name = "bytearrays"
 , dependencies =
-  [ "arraybuffer-types"
-  , "console"
+  [ "aeson"
+  , "aff"
+  , "arraybuffer-types"
   , "effect"
+  , "either"
   , "foldable-traversable"
   , "maybe"
   , "newtype"
   , "prelude"
   , "quickcheck"
+  , "quickcheck-laws"
+  , "spec"
   , "strings"
   ]
 , packages = ./packages.dhall
